@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mudent_version2/screens/loginpage.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+Future<void> main() async {
+  await initializeDateFormatting('th');
   runApp(MyApp());
 }
 
@@ -14,9 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         appBarTheme: AppBarTheme(
-          iconTheme: IconThemeData(color: Colors.white),
-          color: Colors.purple, //<-- SEE HERE
-        ),
+            iconTheme: IconThemeData(color: Colors.white),
+            color: Color.fromARGB(255, 132, 58, 144) //<-- SEE HERE
+            ),
       ),
       debugShowCheckedModeBanner: false,
       home: LoginPage(),

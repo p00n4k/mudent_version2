@@ -61,50 +61,57 @@ class _AllProjectPageState extends State<AllProjectPage> {
       );
     }
 
-    return Container(
-      color: Colors.grey[200],
-      child: ListView.builder(
-        itemCount: projectlist.length,
-        itemBuilder: (context, index) {
-          final project = projectlist[index];
+    return Scaffold(
+      // Add Scaffold widget as the parent
+      appBar: AppBar(
+        title: Text('All Projects', style: TextStyle(color: Colors.white)),
+      ),
+      body: Container(
+        color: Colors.grey[200],
+        child: ListView.builder(
+          itemCount: projectlist.length,
+          itemBuilder: (context, index) {
+            final project = projectlist[index];
 
-          return Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white, // Change the background color to grey
-                border: Border(bottom: BorderSide(color: Colors.grey)),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: EdgeInsets.all(5),
-              child: ListTile(
-                title: Text(
-                  project.project_name,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+            return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, // Change the background color to grey
+                  border: Border(bottom: BorderSide(color: Colors.grey)),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("ที่อยู่ :" + " " + project.project_address),
-                    Text(
-                        'เริ่มวันที่: ${DateFormat('yyyy-MM-dd').format(project.project_start_date)}'),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProjectDetailPage(project: project),
+                margin: EdgeInsets.all(5),
+                child: ListTile(
+                  title: Text(
+                    project.project_name,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("ที่อยู่ :" + " " + project.project_address),
+                      Text(
+                          'เริ่มวันที่: ${DateFormat('yyyy-MM-dd').format(project.project_start_date)}'),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProjectDetailPage(project: project),
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

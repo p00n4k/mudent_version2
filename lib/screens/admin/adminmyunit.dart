@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/myunitpagedetail.dart';
-import 'package:mudent_version2/screens/project_detail.dart';
+
 import 'package:mudent_version2/service/token_service.dart';
 
 class AdminAllProjectPage extends StatefulWidget {

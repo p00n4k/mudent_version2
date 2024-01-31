@@ -89,6 +89,18 @@ class _MyProjectPageState extends State<MyProjectPage> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My Project Page',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: _buildProjectList(),
+    );
+  }
+
+  Widget _buildProjectList() {
     if (projectlist.isEmpty && check == true) {
       return Container(
           color: Colors.grey[200],
@@ -138,7 +150,8 @@ class _MyProjectPageState extends State<MyProjectPage> {
                       ).then((value) => setState(() {
                             _initializeState();
                           }));
-                    } else if (userList[0].user_role_id == 2) {
+                    } else if (userList[0].user_role_id == 2 ||
+                        userList[0].user_role_id == 3) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(

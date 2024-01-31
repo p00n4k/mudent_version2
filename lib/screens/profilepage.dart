@@ -57,129 +57,94 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     }
 
-    return Container(
-      color: Colors.grey[200],
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'My Profile Page',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.purple,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile', style: TextStyle(color: Colors.white)),
+      ),
+      body: Container(
+        color: Colors.grey[200],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CircleAvatar(
-                radius: 50,
-                child: ShowImage(
-                  path: "assets/images/profile_icon.png",
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("User ID",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                CircleAvatar(
+                  radius: 50,
+                  child: ShowImage(
+                    path: "assets/images/profile_icon.png",
                   ),
-                  child: Center(
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("User ID",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
                     child: ListTile(
                       leading: Icon(Icons.perm_identity),
                       title: Text(userList[0].user_id.toString()),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Full Name",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Full Name",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
                     child: ListTile(
                       leading: Icon(Icons.person),
                       title: Text(userList[0].user_fullname),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Email",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Email",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
                     child: ListTile(
                       leading: Icon(Icons.email),
                       title: Text(userList[0].user_email),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Role ID",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Role ID",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
                     child: ListTile(
                       leading: Icon(Icons.security),
                       title: Text(
@@ -196,21 +161,23 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Edit Profile')),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  ElevatedButton(onPressed: () {}, child: Text('Request Role')),
-                ],
-              ),
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {}, child: Text('Edit Profile')),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {}, child: Text('Request Role')),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

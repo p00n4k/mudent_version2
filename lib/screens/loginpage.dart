@@ -84,111 +84,126 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 20,
                 fontWeight: FontWeight.bold)),
         centerTitle: true,
-        leading: Icon(Icons.person), // Add an icon for a modern look
+        // Add an icon for a modern look
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: Center(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Login to your account',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.purple,
-                            fontSize: 17),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '**Please enter your email**';
-                      }
-                      return null;
-                    },
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email,
-                          color: Color.fromARGB(255, 185, 185, 185)),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '**Please enter your password**';
-                      }
-                      return null;
-                    },
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock,
-                          color: Color.fromARGB(255, 185, 185, 185)),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _loginUser();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      primary: Colors.purple, // Example color
-                      minimumSize: Size(double.infinity,
-                          50), // Set the minimum width and height
-                    ),
-                    child: Text(
-                      'Sign In',
-                      style: TextStyle(fontSize: 15.0, color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      primary: Colors.white, // Example color
-                      minimumSize: Size(double.infinity,
-                          50), // Set the minimum width and height
-                    ),
-                    child: Text(
-                      'New User? Sign Up',
-                      style: TextStyle(fontSize: 15.0, color: Colors.purple),
-                    ),
-                  ),
-                ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/mudentlogo.png',
+                height: 90,
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Login to your account',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.purple,
+                                    fontSize: 17),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '**Please enter your email**';
+                              }
+                              return null;
+                            },
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              prefixIcon: Icon(Icons.email,
+                                  color: Color.fromARGB(255, 185, 185, 185)),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '**Please enter your password**';
+                              }
+                              return null;
+                            },
+                            controller: passwordController,
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              prefixIcon: Icon(Icons.lock,
+                                  color: Color.fromARGB(255, 185, 185, 185)),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            obscureText: true,
+                          ),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _loginUser();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              primary: Colors.purple, // Example color
+                              minimumSize: Size(double.infinity,
+                                  50), // Set the minimum width and height
+                            ),
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterPage(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              primary: Colors.white, // Example color
+                              minimumSize: Size(double.infinity,
+                                  50), // Set the minimum width and height
+                            ),
+                            child: Text(
+                              'New User? Sign Up',
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.purple),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

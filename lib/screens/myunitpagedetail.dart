@@ -7,6 +7,7 @@ import 'package:mudent_version2/service/token_service.dart';
 
 import 'package:intl/intl.dart'; // For Date Format
 import 'package:http/http.dart' as http;
+import 'package:mudent_version2/widget/dateformatthailand.dart';
 
 class MyProjectDetailPage extends StatefulWidget {
   final ProjectUnit project;
@@ -85,7 +86,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 120,
+                            width: 190,
                             height: 120,
                             color: Colors.orange[200],
                             child: Center(
@@ -94,36 +95,6 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                                 children: [
                                   Icon(Icons.list),
                                   Text("View Patient"),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    LocationPage(project: widget.project),
-                              ));
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            width: 120,
-                            height: 120,
-                            color: Colors.blue[100],
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.directions),
-                                  Text("Location"),
                                 ],
                               ),
                             ),
@@ -147,7 +118,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 120,
+                            width: 190,
                             height: 120,
                             color: Colors.purple[100],
                             child: Center(
@@ -175,7 +146,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 120,
+                            width: 190,
                             height: 120,
                             color: Colors.blueGrey[200],
                             child: Center(
@@ -203,7 +174,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 120,
+                            width: 190,
                             height: 120,
                             color: Colors.redAccent[100],
                             child: Center(
@@ -218,42 +189,15 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 130,
-                      )
                     ],
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Project ID:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.format_list_numbered),
-                          title: Text(widget.project.project_id.toString()),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Project Name:",
+                      Text("หน่วย:",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
@@ -277,7 +221,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Address:",
+                      Text("ที่อยู่:",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
@@ -301,55 +245,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Time:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.timer),
-                          title: Text(widget.project.project_time.toString()),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Year:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.calendar_month),
-                          title: Text(widget.project.project_year.toString()),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Start Date:",
+                      Text("วันที่ออกหน่วย:",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
@@ -365,83 +261,49 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                       child: Center(
                         child: ListTile(
                           leading: Icon(Icons.calendar_today),
-                          title: Text(DateFormat('yyyy-MM-dd')
-                              .format(widget.project.project_start_date)),
+                          title: DateThai(
+                            startDateThai:
+                                widget.project.project_start_date.toString(),
+                            endDateThai:
+                                widget.project.project_end_date.toString(),
+                          ),
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 30,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Province:",
+                      Text("Location:",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.location_city),
-                          title: Text(widget.project.project_province),
-                        ),
-                      ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                LocationPage(project: widget.project),
+                          ));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                              20), // Adjust the radius as needed
+                          child: Image.asset(
+                            'assets/images/Capture.PNG',
+                            width: double.infinity,
+                          )),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("District:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.location_city),
-                          title: Text(widget.project.project_district),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Subdistrict:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(Icons.location_city),
-                          title: Text(widget.project.project_subdistrict),
-                        ),
-                      ),
-                    ),
+                  SizedBox(
+                    height: 30,
                   ),
                 ],
               ),

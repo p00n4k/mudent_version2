@@ -262,7 +262,7 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
 
   //Create project
   app.post("/project", authenticateToken, async (req, res) => {
-    const { project_name, project_time,project_year,project_address,project_province,project_district,project_subdistrict,project_start_date,project_status,project_lat,project_lon } = req.body;
+    const { project_name, project_time,project_year,project_address,project_province,project_district,project_subdistrict,project_start_date,project_end_date,project_status,project_lat,project_lon } = req.body;
     if(req.user.user_role_id !== 3){
         return res.status(401).json({ message: "You are not authorized" });
         }
@@ -270,7 +270,7 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
     try {
         connection.query(
             'INSERT INTO project (project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date, project_status, project_lat, project_lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date, project_status, project_lat, project_lon],
+            [project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date,project_end_date, project_status, project_lat, project_lon],
              // Use 'groupid' instead of 'group_id'
             (err, result, fields) => {
               if (err) {
@@ -440,6 +440,45 @@ app.get("/project/:project_id/latlon", authenticateToken, async (req, res) => {
   }
 })
 
+//get 5 project that almost time and status is not complete
+app.get("/project/almost", authenticateToken, async (req, res) => {
+  try {
+    connection.query(
+      `SELECT * FROM project WHERE project_status != 1 ORDER BY project_start_date ASC LIMIT 3`,
+      (err, result, fields) => {
+        if (err) {
+          console.log("Error in the query", err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+}
+);
+
+//get project by start date
+app.get("/project/startdate", authenticateToken, async (req, res) => {
+  try {
+    connection.query(
+      `SELECT * FROM project WHERE project_status != 1 ORDER BY project_start_date ASC LIMIT 3`,
+      (err, result, fields) => {
+        if (err) {
+          console.log("Error in the query", err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+}
+);
 
 
  
