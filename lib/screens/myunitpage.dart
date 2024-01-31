@@ -92,9 +92,15 @@ class _MyProjectPageState extends State<MyProjectPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'My Project Page',
+          'History Project',
           style: TextStyle(color: Colors.white),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.history),
+          ),
+        ],
       ),
       body: _buildProjectList(),
     );

@@ -460,15 +460,23 @@ app.get("/project/almost", authenticateToken, async (req, res) => {
 }
 );
 
-//get project by start date
-app.get("/project/startdate", authenticateToken, async (req, res) => {
+//get project by start date   for example 2021-05-01
+app.post("/project/date", authenticateToken, async (req, res) => {
+  const { start_date } = req.body;
+  //add `` to start_date for query
+  
+
+  console.log(start_date);
   try {
     connection.query(
-      `SELECT * FROM project WHERE project_status != 1 ORDER BY project_start_date ASC LIMIT 3`,
+      `SELECT * FROM project WHERE project_start_date = '${start_date}'`,
       (err, result, fields) => {
         if (err) {
           console.log("Error in the query", err);
           return res.status(400).send();
+        }
+        if (result.length === 0) {
+          return res.status(404).send("Not found");
         }
         res.status(200).json(result);
       }
@@ -477,11 +485,7 @@ app.get("/project/startdate", authenticateToken, async (req, res) => {
     console.log(err);
     res.status(500).send();
   }
-}
-);
-
-
- 
+});
 
 
 

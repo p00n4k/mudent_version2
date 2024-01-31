@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
+import 'package:mudent_version2/screens/calendarpage.dart';
 import 'package:mudent_version2/screens/myunitpage.dart';
 import 'package:mudent_version2/screens/profilepage.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
@@ -111,7 +112,11 @@ class _MenuPageState extends State<MenuPage> {
               SizedBox(width: 14),
               Menu(path: 'assets/images/video.png', title: 'Conference'),
               SizedBox(width: 14),
-              Menu(path: 'assets/images/calendar.png', title: 'Calendar'),
+              Menu(
+                path: 'assets/images/calendar.png',
+                title: 'Calendar',
+                callback: () => CalendarPage(),
+              ),
             ],
           ),
           SizedBox(height: 20),

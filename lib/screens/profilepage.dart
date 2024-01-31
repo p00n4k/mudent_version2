@@ -60,6 +60,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile', style: TextStyle(color: Colors.white)),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.person),
+          ),
+        ],
       ),
       body: Container(
         color: Colors.grey[200],

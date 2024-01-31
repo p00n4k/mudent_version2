@@ -64,8 +64,16 @@ class _AllProjectPageState extends State<AllProjectPage> {
     return Scaffold(
       // Add Scaffold widget as the parent
       appBar: AppBar(
-        title: Text('All Projects', style: TextStyle(color: Colors.white)),
-      ),
+          title: Text('All Projects', style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.segment_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            )
+          ]),
       body: Container(
         color: Colors.grey[200],
         child: ListView.builder(

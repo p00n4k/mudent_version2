@@ -80,9 +80,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
     if (checkjoin == true) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Unit Detail',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          title:
+              const Text('Unit Detail', style: TextStyle(color: Colors.white)),
         ),
         body: Container(
           color: Colors.grey[200],
@@ -92,6 +91,114 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
               child: Center(
                 child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("หน่วย:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(Icons.nature_people_rounded),
+                            title: Text(widget.project.project_name),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("ที่อยู่:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(Icons.location_on),
+                            title: Text(widget.project.project_address),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("วันที่ออกหน่วย:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(Icons.calendar_today),
+                            title: DateThai(
+                              startDateThai:
+                                  widget.project.project_start_date.toString(),
+                              endDateThai:
+                                  widget.project.project_end_date.toString(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("Location:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LocationPage(project: widget.project),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                20), // Adjust the radius as needed
+                            child: Image.asset(
+                              'assets/images/Capture.PNG',
+                              width: double.infinity,
+                            )),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -103,7 +210,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 190,
+                              width: 170,
                               height: 120,
                               color: Colors.grey[300],
                               child: Center(
@@ -135,7 +242,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 190,
+                              width: 170,
                               height: 120,
                               color: Colors.purple[100],
                               child: Center(
@@ -155,6 +262,27 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     SizedBox(
                       height: 30,
                     ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title:
+              const Text('Unit Detail', style: TextStyle(color: Colors.white)),
+        ),
+        body: Container(
+          color: Colors.grey[200],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -263,28 +391,6 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                             )),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Unit Detail',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        ),
-        body: Container(
-          color: Colors.grey[200],
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
                     SizedBox(
                       height: 20,
                     ),
@@ -298,7 +404,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 190,
+                              width: 170,
                               height: 120,
                               color: Colors.green[100],
                               child: Center(
@@ -329,7 +435,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 190,
+                              width: 170,
                               height: 120,
                               color: Colors.purple[100],
                               child: Center(
@@ -348,114 +454,6 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                     SizedBox(
                       height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("หน่วย:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: ListTile(
-                            leading: Icon(Icons.nature_people_rounded),
-                            title: Text(widget.project.project_name),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("ที่อยู่:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: ListTile(
-                            leading: Icon(Icons.location_on),
-                            title: Text(widget.project.project_address),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("วันที่ออกหน่วย:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: ListTile(
-                            leading: Icon(Icons.calendar_today),
-                            title: DateThai(
-                              startDateThai:
-                                  widget.project.project_start_date.toString(),
-                              endDateThai:
-                                  widget.project.project_end_date.toString(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("Location:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  LocationPage(project: widget.project),
-                            ));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                                20), // Adjust the radius as needed
-                            child: Image.asset(
-                              'assets/images/Capture.PNG',
-                              width: double.infinity,
-                            )),
-                      ),
                     ),
                   ],
                 ),
