@@ -16,7 +16,10 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   String token = '';
-  var daylist = [];
+  var daylist = [
+    DateTime(2024, 2, 1),
+    DateTime(2024, 2, 2),
+  ];
   List<ProjectUnit> projectlist = [];
   var date = DateFormat('yyyy-MM-dd').format(DateTime.now());
   bool check = false;
@@ -85,6 +88,26 @@ class _CalendarPageState extends State<CalendarPage> {
               lastDate: DateTime(2025),
               initialDate: DateTime.now(),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                "Date : ",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.purple[900]),
+              ),
+              Text(date,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.purple[700],
+                      fontWeight: FontWeight.bold)),
+            ],
           ),
           Expanded(
             child: check && projectlist.isNotEmpty

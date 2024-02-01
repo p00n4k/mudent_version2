@@ -269,7 +269,7 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
         else{
     try {
         connection.query(
-            'INSERT INTO project (project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date, project_status, project_lat, project_lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO project (project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date, project_end_date,project_status, project_lat, project_lon) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)',
             [project_name, project_time, project_year, project_address, project_province, project_district, project_subdistrict, project_start_date,project_end_date, project_status, project_lat, project_lon],
              // Use 'groupid' instead of 'group_id'
             (err, result, fields) => {

@@ -16,10 +16,12 @@ class DateThai extends StatelessWidget {
 
     final thaiDateThaiFormat = DateFormat('dd MMM yyyy', 'th');
 
-    final formattedStartDateThai = thaiDateThaiFormat.format(startDateThaiTime);
-    final formattedEndDateThai = thaiDateThaiFormat.format(endDateThaiTime);
+    final formattedStartDateThai = thaiDateThaiFormat
+        .format(startDateThaiTime.add(Duration(days: 543 * 365)));
+    final formattedEndDateThai = thaiDateThaiFormat
+        .format(endDateThaiTime.add(Duration(days: 543 * 365)));
 
-    //check if start date and end date is not the same month
+    // check if start date and end date is not the same month
     if (startDateThaiTime.month != endDateThaiTime.month ||
         startDateThaiTime.year != endDateThaiTime.year) {
       return Text(
@@ -30,15 +32,14 @@ class DateThai extends StatelessWidget {
       );
     } else if (startDateThaiTime.day == endDateThaiTime.day) {
       return Text(
-        '${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year}',
+        '${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year + 543}',
         style: TextStyle(
           fontSize: 16,
         ),
       );
     } else {
       return Text(
-        startDateThaiTime.day.toString() +
-            ' - ${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year}',
+        '${startDateThaiTime.day} - ${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year + 543}',
         style: TextStyle(
           fontSize: 16,
         ),
