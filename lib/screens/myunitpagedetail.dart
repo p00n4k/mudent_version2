@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mudent_version2/model/project.dart';
+import 'package:mudent_version2/screens/conference.dart';
 import 'package:mudent_version2/screens/locationpage.dart';
 import 'package:mudent_version2/screens/memberlistpage.dart';
 import 'package:mudent_version2/screens/patientlistpage.dart';
@@ -252,7 +253,15 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ConferencePage(project: widget.project),
+                            ),
+                          );
+                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
@@ -265,7 +274,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                                 children: [
                                   Icon(Icons.video_camera_front_rounded),
                                   Text(
-                                    "Video Call",
+                                    "Conference",
                                   ),
                                 ],
                               ),
