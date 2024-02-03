@@ -193,10 +193,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     ElevatedButton(
                         onPressed: () {
                           _deleteToken();
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
+
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                            (Route<dynamic> route) =>
+                                false, // This line removes all the routes from the stack
+                          );
                         },
                         child: Text('Logout',
                             style: TextStyle(color: Colors.red))),
