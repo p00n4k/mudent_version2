@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mudent_version2/model/users.dart';
+import 'package:mudent_version2/screens/loginpage.dart';
 import 'package:mudent_version2/service/token_service.dart';
 import 'package:mudent_version2/widget/show_image.dart';
 
@@ -28,6 +29,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _loadToken() async {
     final storageService = StorageService();
     token = await storageService.readToken();
+  }
+
+  // log out
+  Future<void> _deleteToken() async {
+    final storageService = StorageService();
+    await storageService.deleteToken();
   }
 
   Future<void> _fetchData() async {
@@ -180,6 +187,19 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ElevatedButton(
                         onPressed: () {}, child: Text('Request Role')),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          _deleteToken();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                        child: Text('Logout',
+                            style: TextStyle(color: Colors.red))),
                   ],
                 ),
               ],
