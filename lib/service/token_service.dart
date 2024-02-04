@@ -12,4 +12,9 @@ class StorageService {
     token = await storage.read(key: 'token') ?? '';
     return token;
   }
+
+  //clear token
+  Future<void> deleteToken() async {
+    await storage.delete(key: 'token');
+  }
 }

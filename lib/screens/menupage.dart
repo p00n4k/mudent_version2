@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
 import 'package:mudent_version2/screens/calendarpage.dart';
+import 'package:mudent_version2/screens/disablepage.dart';
 import 'package:mudent_version2/screens/myunitpage.dart';
 import 'package:mudent_version2/screens/profilepage.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
@@ -110,7 +111,10 @@ class _MenuPageState extends State<MenuPage> {
                   title: 'My Project',
                   callback: () => AllProjectPage()),
               SizedBox(width: 14),
-              Menu(path: 'assets/images/video.png', title: 'Conference'),
+              Menu(
+                  path: 'assets/images/video.png',
+                  title: 'Conference',
+                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/calendar.png',
@@ -123,11 +127,15 @@ class _MenuPageState extends State<MenuPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Menu(path: 'assets/images/jaiya.png', title: 'จ่ายยาออนไลน์'),
+              Menu(
+                  path: 'assets/images/jaiya.png',
+                  title: 'จ่ายยาออนไลน์',
+                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                   path: 'assets/images/medicalonl.png',
-                  title: 'Medical Online'),
+                  title: 'Medical Online',
+                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/history.png',
@@ -140,7 +148,10 @@ class _MenuPageState extends State<MenuPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Menu(path: 'assets/images/dookonkai.png', title: 'ดูคนไข้'),
+              Menu(
+                  path: 'assets/images/dookonkai.png',
+                  title: 'ดูคนไข้',
+                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/profile.png',
