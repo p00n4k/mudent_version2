@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:jitsi_meet_flutter_sdk/jitsi_meet_flutter_sdk.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/model/users.dart';
 import 'package:mudent_version2/service/token_service.dart';
@@ -53,6 +54,41 @@ class _ConferencePageState extends State<ConferencePage> {
     }
   }
 
+  bool isMicMute = true;
+  bool isCameraOff = true;
+  bool isAudioOff = true;
+  bool screenShareOn = false;
+  List<String> participants = [];
+  final _jitsiMeetPlugin = JitsiMeet();
+
+//join conference
+  join() async {
+    var options = JitsiMeetConferenceOptions(
+      serverURL: 'https://meet.codewithbisky.com/${widget.project.project_name}',
+      room: widget.project.project_name,
+      configOverrides: {
+        "startWithAudioMuted": isMicMute,
+        "startWithVideoMuted": isCameraOff,
+        "subject": "Call"
+      },
+      featureFlags: {
+        "unsaferoomwarning.enabled": false,
+        "ios.screensharing.enabled": true,
+        "prejoinpage.enabled": false,
+        "welcomepage.enabled":false
+      },
+      userInfo: JitsiMeetUserInfo(
+          displayName: userList[0].user_fullname,
+          email: userList[0].user_email,
+          avatar:
+              "https://i.ibb.co/nDhcrW4/ictmahidol.jpg"),
+    );
+    
+    await _jitsiMeetPlugin.join(options);
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     if (userList.isEmpty) {
@@ -62,19 +98,70 @@ class _ConferencePageState extends State<ConferencePage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Conference'),
+        title: Text(widget.project.project_name,
+          style: const TextStyle(
+            color: Colors.white
+          ),
+         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Text('Conference Page'),
-            // Text('Project ID: ${widget.project.project_id}'),
-            Text('Project Name: ${widget.project.project_name}'),
-            Text('User Name: ${userList[0].user_fullname}'),
-            Text('Email: ${userList[0].user_email}'),
-          ],
-        ),
+      
+      body: Column(
+        children: <Widget> [
+           Container(
+              height: 50,
+            ),
+            Text(
+              userList[0].user_fullname,
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.w700
+              ),
+            ),
+            Container(
+              height: 50,
+            ),
+            Container(
+            child: const CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 132, 58, 144),
+                radius: 150,
+              ),
+            ),
+            Container(
+              height: 70,
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
+            SwitchListTile(
+              title: const Text('Muted Audio'),
+              value: isAudioOff, 
+              onChanged: (bool value) {
+                setState(() {
+                  isAudioOff = value;
+                });
+              }
+            ),
+            SwitchListTile(
+              title: const Text('Turn off Camera'),
+              value: isCameraOff, 
+              onChanged: (bool value2) {
+                setState(() {
+                  isCameraOff = value2;
+                });
+              }
+            ),
+            SwitchListTile(
+              title: const Text('Muted Microphone'),
+              value: isMicMute, 
+              onChanged: (bool value3) {
+                setState(() {
+                  isMicMute = value3;
+                });
+              }
+            ),
+            TextButton(
+              onPressed: join, 
+              child: const Text("Join")
+            )
+        ],
       ),
     );
   }
