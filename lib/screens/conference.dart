@@ -64,7 +64,8 @@ class _ConferencePageState extends State<ConferencePage> {
 //join conference
   join() async {
     var options = JitsiMeetConferenceOptions(
-      serverURL: 'https://meet.codewithbisky.com/${widget.project.project_name}',
+      serverURL:
+          'https://meet.codewithbisky.com/${widget.project.project_name}',
       room: widget.project.project_name,
       configOverrides: {
         "startWithAudioMuted": isMicMute,
@@ -75,19 +76,16 @@ class _ConferencePageState extends State<ConferencePage> {
         "unsaferoomwarning.enabled": false,
         "ios.screensharing.enabled": true,
         "prejoinpage.enabled": false,
-        "welcomepage.enabled":false
+        "welcomepage.enabled": false
       },
       userInfo: JitsiMeetUserInfo(
           displayName: userList[0].user_fullname,
           email: userList[0].user_email,
-          avatar:
-              "https://i.ibb.co/nDhcrW4/ictmahidol.jpg"),
+          avatar: "https://i.ibb.co/nDhcrW4/ictmahidol.jpg"),
     );
-    
+
     await _jitsiMeetPlugin.join(options);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,30 +96,26 @@ class _ConferencePageState extends State<ConferencePage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.project.project_name,
-          style: const TextStyle(
-            color: Colors.white
-          ),
-         ),
+        title: Text(
+          widget.project.project_name,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
-      
-      body: Column(
-        children: <Widget> [
-           Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
               height: 50,
             ),
             Text(
               userList[0].user_fullname,
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.w700
-              ),
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
             ),
             Container(
               height: 50,
             ),
             Container(
-            child: const CircleAvatar(
+              child: const CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 132, 58, 144),
                 radius: 150,
               ),
@@ -131,37 +125,32 @@ class _ConferencePageState extends State<ConferencePage> {
               color: Color.fromARGB(255, 255, 255, 255),
             ),
             SwitchListTile(
-              title: const Text('Muted Audio'),
-              value: isAudioOff, 
-              onChanged: (bool value) {
-                setState(() {
-                  isAudioOff = value;
-                });
-              }
-            ),
+                title: const Text('Muted Audio'),
+                value: isAudioOff,
+                onChanged: (bool value) {
+                  setState(() {
+                    isAudioOff = value;
+                  });
+                }),
             SwitchListTile(
-              title: const Text('Turn off Camera'),
-              value: isCameraOff, 
-              onChanged: (bool value2) {
-                setState(() {
-                  isCameraOff = value2;
-                });
-              }
-            ),
+                title: const Text('Turn off Camera'),
+                value: isCameraOff,
+                onChanged: (bool value2) {
+                  setState(() {
+                    isCameraOff = value2;
+                  });
+                }),
             SwitchListTile(
-              title: const Text('Muted Microphone'),
-              value: isMicMute, 
-              onChanged: (bool value3) {
-                setState(() {
-                  isMicMute = value3;
-                });
-              }
-            ),
-            TextButton(
-              onPressed: join, 
-              child: const Text("Join")
-            )
-        ],
+                title: const Text('Muted Microphone'),
+                value: isMicMute,
+                onChanged: (bool value3) {
+                  setState(() {
+                    isMicMute = value3;
+                  });
+                }),
+            TextButton(onPressed: join, child: const Text("Join"))
+          ],
+        ),
       ),
     );
   }

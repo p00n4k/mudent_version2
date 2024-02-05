@@ -1,4 +1,5 @@
 {
     "cmake.sourceDirectory": "D:/Senior/mudent_version2/linux",
-    "workbench.iconTheme": "vs-seti"
+    "workbench.iconTheme": "vs-seti",
+    "java.configuration.updateBuildConfiguration": "disabled"
 }
