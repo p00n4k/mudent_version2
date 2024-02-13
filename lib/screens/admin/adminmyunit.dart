@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
-import 'package:mudent_version2/screens/myunitpagedetail.dart';
+import 'package:mudent_version2/screens/admin/adminmyunitdetail.dart';
+import 'package:mudent_version2/screens/shph/shphmyunitpagedetail.dart';
 
 import 'package:mudent_version2/service/token_service.dart';
 
@@ -36,7 +37,7 @@ class _AdminAllProjectPageState extends State<AdminAllProjectPage> {
   }
 
   Future<void> _fetchData() async {
-    final url = Uri.parse('http://10.0.2.2:3000/project');
+    final url = Uri.parse('http://10.0.2.2:3000/project/notcomplete');
     final response = await http.get(
       url,
       headers: {
@@ -63,7 +64,7 @@ class _AdminAllProjectPageState extends State<AdminAllProjectPage> {
     }
 
     return Container(
-      color: Colors.grey[200],
+      color: Colors.purple[50],
       child: ListView.builder(
         itemCount: projectlist.length,
         itemBuilder: (context, index) {
@@ -99,7 +100,7 @@ class _AdminAllProjectPageState extends State<AdminAllProjectPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          MyProjectDetailPage(project: project),
+                          AdminAllProjectPageDetail(project: project),
                     ),
                   ).then((value) => setState(() {
                         _initializeState();

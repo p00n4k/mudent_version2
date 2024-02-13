@@ -56,8 +56,22 @@ class _AllProjectPageState extends State<AllProjectPage> {
   @override
   Widget build(BuildContext context) {
     if (projectlist.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('All Projects', style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.segment_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            )
+          ],
+        ),
+        body: const Center(
+          child: Text('ไม้่มีโปรเจคที่กำลังดำเนินการ'),
+        ),
       );
     }
 
@@ -75,7 +89,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
             )
           ]),
       body: Container(
-        color: Colors.grey[200],
+        color: Colors.purple[50],
         child: ListView.builder(
           itemCount: projectlist.length,
           itemBuilder: (context, index) {

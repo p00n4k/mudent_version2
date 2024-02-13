@@ -4,23 +4,23 @@ import 'package:mudent_version2/screens/conference.dart';
 import 'package:mudent_version2/screens/locationpage.dart';
 import 'package:mudent_version2/screens/memberlistpage.dart';
 import 'package:mudent_version2/screens/patientlistpage.dart';
+import 'package:mudent_version2/screens/shph/shphsecretgroup.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
 import 'package:intl/intl.dart'; // For Date Format
 import 'package:http/http.dart' as http;
 import 'package:mudent_version2/widget/dateformatthailand.dart';
 
-class DefaultMyProjectDetailPage extends StatefulWidget {
+class SHPHAllProjectPageDetail extends StatefulWidget {
   final ProjectUnit project;
-  const DefaultMyProjectDetailPage({required this.project});
+  const SHPHAllProjectPageDetail({required this.project});
 
   @override
-  State<DefaultMyProjectDetailPage> createState() =>
-      _DefaultMyProjectDetailPageState();
+  State<SHPHAllProjectPageDetail> createState() =>
+      _SHPHAllProjectPageDetailState();
 }
 
-class _DefaultMyProjectDetailPageState
-    extends State<DefaultMyProjectDetailPage> {
+class _SHPHAllProjectPageDetailState extends State<SHPHAllProjectPageDetail> {
   String token = '';
 
   Future<void> _leaveProject() async {
@@ -58,12 +58,11 @@ class _DefaultMyProjectDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Default Detail',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text('SHPH Unit Detail',
+            style: TextStyle(color: Colors.white)),
       ),
       body: Container(
         color: Colors.grey[200],
-        height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
@@ -162,6 +161,37 @@ class _DefaultMyProjectDetailPageState
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
+                                  SHPHSecretGroup(project: widget.project),
+                            ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.orange[200],
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.local_hospital_outlined),
+                                  Text("กลุ่ม รพสต"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
                                   MemberListPage(project: widget.project),
                             ),
                           );
@@ -188,6 +218,43 @@ class _DefaultMyProjectDetailPageState
                       SizedBox(
                         width: 10,
                       ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LocationPage(project: widget.project),
+                            ),
+                          );
+                          print("Location");
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.blue[100],
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.map),
+                                  Text("Location"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -247,39 +314,7 @@ class _DefaultMyProjectDetailPageState
                     ],
                   ),
                   SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              LocationPage(project: widget.project),
-                        ),
-                      );
-                      print("Location");
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        width: double.infinity,
-                        height: 80,
-                        color: Colors.blue[100],
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.map),
-                              Text("Location"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                 ],
               ),

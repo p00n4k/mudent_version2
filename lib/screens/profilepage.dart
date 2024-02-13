@@ -62,155 +62,321 @@ class _ProfilePageState extends State<ProfilePage> {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile', style: TextStyle(color: Colors.white)),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person),
-          ),
-        ],
-      ),
-      body: Container(
-        color: Colors.grey[200],
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CircleAvatar(
-                  radius: 50,
-                  child: ShowImage(
-                    path: "assets/images/profile_icon.png",
+    } else if (userList[0].user_role_id != 2) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Profile', style: TextStyle(color: Colors.white)),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.person),
+            ),
+          ],
+        ),
+        body: Container(
+          color: Colors.purple[50],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("User ID",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Card(
-                    child: ListTile(
-                      leading: Icon(Icons.perm_identity),
-                      title: Text(userList[0].user_id.toString()),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CircleAvatar(
+                    radius: 50,
+                    child: ShowImage(
+                      path: "assets/images/profile_icon.png",
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Full Name",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Card(
-                    child: ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text(userList[0].user_fullname),
-                    ),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Email",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Card(
-                    child: ListTile(
-                      leading: Icon(Icons.email),
-                      title: Text(userList[0].user_email),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("User ID",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Role ID",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Card(
-                    child: ListTile(
-                      leading: Icon(Icons.security),
-                      title: Text(
-                        userList[0].user_role_id == 3
-                            ? 'Admin'
-                            : userList[0].user_role_id == 1
-                                ? 'Default'
-                                : userList[0].user_role_id == 2
-                                    ? 'Subdistrict Health Promoting Hospital'
-                                    : userList[0].user_role_id == 4
-                                        ? 'STAFF'
-                                        : userList[0].user_role_id.toString(),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.perm_identity),
+                        title: Text(userList[0].user_id.toString()),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {}, child: Text('Edit Profile')),
-                    SizedBox(
-                      width: 20,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Full Name",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(userList[0].user_fullname),
+                      ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {}, child: Text('Request Role')),
-                    SizedBox(
-                      width: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Email",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.email),
+                        title: Text(userList[0].user_email),
+                      ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          _deleteToken();
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Role ID",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.security),
+                        title: Text(
+                          userList[0].user_role_id == 3
+                              ? 'Admin'
+                              : userList[0].user_role_id == 1
+                                  ? 'Default'
+                                  : userList[0].user_role_id == 2
+                                      ? 'Subdistrict Health Promoting Hospital'
+                                      : userList[0].user_role_id == 4
+                                          ? 'STAFF'
+                                          : userList[0].user_role_id.toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {}, child: Text('Edit Profile')),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {}, child: Text('Request Role')),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            _deleteToken();
 
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                            (Route<dynamic> route) =>
-                                false, // This line removes all the routes from the stack
-                          );
-                        },
-                        child: Text('Logout',
-                            style: TextStyle(color: Colors.red))),
-                  ],
-                ),
-              ],
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                              (Route<dynamic> route) =>
+                                  false, // This line removes all the routes from the stack
+                            );
+                          },
+                          child: Text('Logout',
+                              style: TextStyle(color: Colors.red))),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Profile', style: TextStyle(color: Colors.white)),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.person),
+            ),
+          ],
+        ),
+        body: Container(
+          color: Colors.purple[50],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CircleAvatar(
+                    radius: 50,
+                    child: ShowImage(
+                      path: "assets/images/profile_icon.png",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("User ID",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.perm_identity),
+                        title: Text(userList[0].user_id.toString()),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Full Name",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(userList[0].user_fullname),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Email",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.email),
+                        title: Text(userList[0].user_email),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Role ID",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.security),
+                        title: Text(
+                          userList[0].user_role_id == 3
+                              ? 'Admin'
+                              : userList[0].user_role_id == 1
+                                  ? 'Default'
+                                  : userList[0].user_role_id == 2
+                                      ? 'Subdistrict Health Promoting Hospital'
+                                      : userList[0].user_role_id == 4
+                                          ? 'STAFF'
+                                          : userList[0].user_role_id.toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("SHPH Name",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.local_hospital),
+                        title: Text(userList[0].user_shph),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {}, child: Text('Edit Profile')),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {}, child: Text('Request Role')),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            _deleteToken();
+
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                              (Route<dynamic> route) =>
+                                  false, // This line removes all the routes from the stack
+                            );
+                          },
+                          child: Text('Logout',
+                              style: TextStyle(color: Colors.red))),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

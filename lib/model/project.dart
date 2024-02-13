@@ -9,6 +9,7 @@ class ProjectUnit {
   final String project_subdistrict;
   final DateTime project_start_date;
   final DateTime project_end_date;
+  final String project_shph;
 
   ProjectUnit({
     required this.project_id,
@@ -21,6 +22,7 @@ class ProjectUnit {
     required this.project_subdistrict,
     required this.project_start_date,
     required this.project_end_date,
+    required this.project_shph,
   });
 }
 
@@ -39,6 +41,7 @@ List<ProjectUnit> parseJsonDataProject(dynamic jsonData) {
       project_subdistrict: projectJson['project_subdistrict'],
       project_start_date: DateTime.parse(projectJson['project_start_date']),
       project_end_date: DateTime.parse(projectJson['project_end_date']),
+      project_shph: projectJson['project_shph'],
     );
     projectList.add(project);
   }

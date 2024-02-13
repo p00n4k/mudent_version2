@@ -85,6 +85,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
         ),
         body: Container(
           color: Colors.grey[200],
+          height: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
@@ -172,37 +173,6 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                       height: 30,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("Location:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  LocationPage(project: widget.project),
-                            ));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                                20), // Adjust the radius as needed
-                            child: Image.asset(
-                              'assets/images/Capture.PNG',
-                              width: double.infinity,
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
@@ -210,7 +180,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 170,
+                              width: 120,
                               height: 120,
                               color: Colors.grey[300],
                               child: Center(
@@ -242,7 +212,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 170,
+                              width: 120,
                               height: 120,
                               color: Colors.purple[100],
                               child: Center(
@@ -251,6 +221,38 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                   children: [
                                     Icon(Icons.group),
                                     Text("Member"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    LocationPage(project: widget.project),
+                              ),
+                            );
+                            print("Location");
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              color: Colors.blue[100],
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.map),
+                                    Text("Location"),
                                   ],
                                 ),
                               ),
@@ -277,6 +279,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
         ),
         body: Container(
           color: Colors.grey[200],
+          height: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
@@ -364,37 +367,6 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                       height: 30,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("Location:",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  LocationPage(project: widget.project),
-                            ));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                                20), // Adjust the radius as needed
-                            child: Image.asset(
-                              'assets/images/Capture.PNG',
-                              width: double.infinity,
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
@@ -404,7 +376,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 170,
+                              width: 120,
                               height: 120,
                               color: Colors.green[100],
                               child: Center(
@@ -435,7 +407,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 170,
+                              width: 120,
                               height: 120,
                               color: Colors.purple[100],
                               child: Center(
@@ -444,6 +416,38 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                   children: [
                                     Icon(Icons.group),
                                     Text("Member"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    LocationPage(project: widget.project),
+                              ),
+                            );
+                            print("Location");
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              color: Colors.blue[100],
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.map),
+                                    Text("Location"),
                                   ],
                                 ),
                               ),

@@ -7,7 +7,7 @@ import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
 import 'package:mudent_version2/screens/calendarpage.dart';
 import 'package:mudent_version2/screens/disablepage.dart';
-import 'package:mudent_version2/screens/myunitpage.dart';
+import 'package:mudent_version2/screens/historymyunitpage.dart';
 import 'package:mudent_version2/screens/profilepage.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
@@ -74,12 +74,6 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (projectList.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
     return Scaffold(
       body: ListView(
         children: [
@@ -108,7 +102,7 @@ class _MenuPageState extends State<MenuPage> {
             children: [
               Menu(
                   path: 'assets/images/allpj.png',
-                  title: 'My Project',
+                  title: 'All Project',
                   callback: () => AllProjectPage()),
               SizedBox(width: 14),
               Menu(
@@ -140,7 +134,7 @@ class _MenuPageState extends State<MenuPage> {
               Menu(
                 path: 'assets/images/history.png',
                 title: 'History',
-                callback: () => MyProjectPage(),
+                callback: () => HistoryMyProjectPage(),
               ),
             ],
           ),

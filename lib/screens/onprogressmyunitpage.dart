@@ -5,19 +5,20 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/model/users.dart';
+import 'package:mudent_version2/screens/admin/adminmyunitdetail.dart';
 import 'package:mudent_version2/screens/default/defaultmyunitdetailpage.dart';
-import 'package:mudent_version2/screens/myunitpagedetail.dart';
+import 'package:mudent_version2/screens/shph/shphmyunitpagedetail.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
-class MyProjectPage extends StatefulWidget {
-  const MyProjectPage({Key? key}) : super(key: key);
+class OnprogressProjectPage extends StatefulWidget {
+  const OnprogressProjectPage({Key? key}) : super(key: key);
 
   @override
-  State<MyProjectPage> createState() => _MyProjectPageState();
+  State<OnprogressProjectPage> createState() => _OnprogressProjectPageState();
 }
 
-class _MyProjectPageState extends State<MyProjectPage> {
+class _OnprogressProjectPageState extends State<OnprogressProjectPage> {
   String token = '';
   List<User> userList = [];
   List<ProjectUnit> projectlist = [];
@@ -41,7 +42,7 @@ class _MyProjectPageState extends State<MyProjectPage> {
   }
 
   Future<void> _checkUser() async {
-    final url = Uri.parse('http://10.0.2.2:3000/project/join');
+    final url = Uri.parse('http://10.0.2.2:3000/project/join/notcomplete');
     final response = await http.get(
       url,
       headers: {
@@ -109,11 +110,11 @@ class _MyProjectPageState extends State<MyProjectPage> {
   Widget _buildProjectList() {
     if (projectlist.isEmpty && check == true) {
       return Container(
-          color: Colors.grey[200],
+          color: Colors.purple[50],
           child: Center(child: Text("ไม่มีโปรเจคที่เข้าร่วม")));
     } else if (projectlist.isNotEmpty && check == true) {
       return Container(
-        color: Colors.grey[200],
+        color: Colors.purple[50],
         child: ListView.builder(
           itemCount: projectlist.length,
           itemBuilder: (context, index) {
@@ -145,24 +146,32 @@ class _MyProjectPageState extends State<MyProjectPage> {
                     ],
                   ),
                   onTap: () {
-                    if (userList[0].user_role_id == 1 ||
-                        userList[0].user_role_id == 4) {
+                    if (userList[0].user_role_id == 3) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              AdminAllProjectPageDetail(project: project),
+                        ),
+                      ).then((value) => setState(() {
+                            _initializeState();
+                          }));
+                    } else if (userList[0].user_shph == project.project_shph) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SHPHAllProjectPageDetail(project: project),
+                        ),
+                      ).then((value) => setState(() {
+                            _initializeState();
+                          }));
+                    } else {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
                               DefaultMyProjectDetailPage(project: project),
-                        ),
-                      ).then((value) => setState(() {
-                            _initializeState();
-                          }));
-                    } else if (userList[0].user_role_id == 2 ||
-                        userList[0].user_role_id == 3) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              MyProjectDetailPage(project: project),
                         ),
                       ).then((value) => setState(() {
                             _initializeState();

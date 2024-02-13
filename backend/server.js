@@ -160,7 +160,7 @@ app.get("/user", authenticateToken, async (req, res) => {
     console.log(req.user); //decoded is the payload
     try {
       connection.query(
-        `SELECT user_id,user_email,user_fullname,user_role_id FROM users  WHERE user_id = '${req.user.user_id}'`,
+        `SELECT user_id,user_email,user_fullname,user_role_id,user_shph FROM users  WHERE user_id = '${req.user.user_id}'`,
         (err, result, fields) => {
           if (err) {
             console.log("Error in the query", err);
@@ -307,7 +307,24 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
       res.status(500).send();
     }
   });
-  
+    //Get project list that not complete
+    app.get("/project/notcomplete", authenticateToken, async (req, res) => {
+      try {
+        connection.query(
+          `SELECT * FROM project WHERE project_status != 1`,
+          (err, result, fields) => {
+            if (err) {
+              console.log("Error in the query", err);
+              return res.status(400).send();
+            }
+            res.status(200).json(result);
+          }
+        );
+      } catch (err) {
+        console.log(err);
+        res.status(500).send();
+      }
+    });
 
 
 
@@ -316,7 +333,7 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
     const { project_id } = req.params; // Use 'groupid' instead of 'group_id'
     try {
       connection.query(
-        `SELECT user_id,user_email,user_fullname,user_role_id FROM users INNER JOIN user_project ON users.user_id = user_project.user_project_user_id WHERE user_project_group_id = ${project_id}`,
+        `SELECT user_id,user_email,user_fullname,user_role_id,user_shph FROM users INNER JOIN user_project ON users.user_id = user_project.user_project_user_id WHERE user_project_group_id = ${project_id}`,
         (err, result, fields) => {
           if (err) {
             console.log("Error in the query", err);
@@ -353,6 +370,30 @@ app.delete("/project/:project_id/join", authenticateToken, async (req, res) => {
       res.status(500).send();
     }
   });
+
+  // Get list project that user that project not complete
+  app.get("/project/join/notcomplete", authenticateToken, async (req, res) => {
+    try {
+      connection.query(
+        `SELECT * FROM project INNER JOIN user_project ON project.project_id = user_project.user_project_group_id WHERE user_project_user_id = ${req.user.user_id} AND project_status != 1`,
+        (err, result, fields) => {
+          if (err) {
+            console.log("Error in the query", err);
+            return res.status(400).send();
+          }
+          if (result.length === 0) {
+            return res.status(200).send();
+          }
+          res.status(200).json(result);
+        }
+      );
+    } catch (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+  });
+  
+
 
   //Get all patient
   app.get("/patient", authenticateToken, async (req, res) => {
@@ -418,6 +459,32 @@ app.get("/patient/:project_id/project", authenticateToken, async (req, res) => {
     res.status(500).send(); 
   }
 });
+
+//Get patient by project id and status is true
+app.get("/patient/:project_id/project/check", authenticateToken, async (req, res) => {
+  const { project_id } = req.params; 
+  try {
+    if (req.user.user_role_id === 1 || req.user.user_role_id === 4) {
+      return res.status(403).json({ error: "Unauthorized access" });
+    }
+
+    connection.query(
+      `SELECT patient_id ,patient_name,patient_surname,patient_nationalid,patient_birthday,patient_age FROM patient INNER JOIN patient_project ON patient.patient_id = patient_project.patient_project_patient_id WHERE patient_project_project_id = ${project_id} AND patient_status = 1`,
+      (err, result, fields) => {
+        if (err) {
+          console.log("Error in the query", err);
+          return res.status(400).send();
+        }
+
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(); 
+  }
+}
+);
   
 //Get lat lon by project id
 app.get("/project/:project_id/latlon", authenticateToken, async (req, res) => {

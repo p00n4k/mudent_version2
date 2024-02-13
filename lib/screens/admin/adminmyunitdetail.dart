@@ -4,21 +4,23 @@ import 'package:mudent_version2/screens/conference.dart';
 import 'package:mudent_version2/screens/locationpage.dart';
 import 'package:mudent_version2/screens/memberlistpage.dart';
 import 'package:mudent_version2/screens/patientlistpage.dart';
+import 'package:mudent_version2/screens/shph/shphsecretgroup.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
 import 'package:intl/intl.dart'; // For Date Format
 import 'package:http/http.dart' as http;
 import 'package:mudent_version2/widget/dateformatthailand.dart';
 
-class MyProjectDetailPage extends StatefulWidget {
+class AdminAllProjectPageDetail extends StatefulWidget {
   final ProjectUnit project;
-  const MyProjectDetailPage({required this.project});
+  const AdminAllProjectPageDetail({required this.project});
 
   @override
-  State<MyProjectDetailPage> createState() => _MyProjectDetailPageState();
+  State<AdminAllProjectPageDetail> createState() =>
+      _AdminAllProjectPageDetailState();
 }
 
-class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
+class _AdminAllProjectPageDetailState extends State<AdminAllProjectPageDetail> {
   String token = '';
 
   Future<void> _leaveProject() async {
@@ -56,7 +58,8 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Unit Detail', style: TextStyle(color: Colors.white)),
+        title: const Text('Admin Unit Detail',
+            style: TextStyle(color: Colors.white)),
       ),
       body: Container(
         color: Colors.grey[200],
@@ -150,37 +153,6 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                     height: 30,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Location:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                LocationPage(project: widget.project),
-                          ));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                              20), // Adjust the radius as needed
-                          child: Image.asset(
-                            'assets/images/Capture.PNG',
-                            width: double.infinity,
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
@@ -197,9 +169,9 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 170,
+                            width: 120,
                             height: 120,
-                            color: Colors.orange[200],
+                            color: Colors.green[100],
                             child: Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +201,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 170,
+                            width: 120,
                             height: 120,
                             color: Colors.purple[100],
                             child: Center(
@@ -238,6 +210,38 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                                 children: [
                                   Icon(Icons.group),
                                   Text("Member"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LocationPage(project: widget.project),
+                            ),
+                          );
+                          print("Location");
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.blue[100],
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.map),
+                                  Text("Location"),
                                 ],
                               ),
                             ),
@@ -265,7 +269,7 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 170,
+                            width: 120,
                             height: 120,
                             color: Colors.blueGrey[200],
                             child: Center(
@@ -287,13 +291,44 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SHPHSecretGroup(project: widget.project),
+                            ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.orange[200],
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.local_hospital_outlined),
+                                  Text("กลุ่ม รพสต"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
                           _leaveProject();
                           print("Leave Group");
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 170,
+                            width: 120,
                             height: 120,
                             color: Colors.redAccent[100],
                             child: Center(

@@ -5,7 +5,8 @@ import 'package:mudent_version2/model/users.dart';
 import 'package:mudent_version2/screens/admin/adminmyunit.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
 import 'package:mudent_version2/screens/menupage.dart';
-import 'package:mudent_version2/screens/myunitpage.dart';
+import 'package:mudent_version2/screens/historymyunitpage.dart';
+import 'package:mudent_version2/screens/onprogressmyunitpage.dart';
 import 'package:mudent_version2/screens/profilepage.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
@@ -82,7 +83,7 @@ class _HomepageState extends State<Homepage> {
             ProfilePage(),
             userList[0].user_role_id == 3
                 ? AdminAllProjectPage()
-                : MyProjectPage(),
+                : OnprogressProjectPage(),
             AllProjectPage(),
           ],
         ),
