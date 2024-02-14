@@ -11,14 +11,14 @@ import 'package:mudent_version2/screens/shph/shphmyunitpagedetail.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
-class OnprogressProjectPage extends StatefulWidget {
-  const OnprogressProjectPage({Key? key}) : super(key: key);
+class InprogressProjectPage extends StatefulWidget {
+  const InprogressProjectPage({Key? key}) : super(key: key);
 
   @override
-  State<OnprogressProjectPage> createState() => _OnprogressProjectPageState();
+  State<InprogressProjectPage> createState() => _InprogressProjectPageState();
 }
 
-class _OnprogressProjectPageState extends State<OnprogressProjectPage> {
+class _InprogressProjectPageState extends State<InprogressProjectPage> {
   String token = '';
   List<User> userList = [];
   List<ProjectUnit> projectlist = [];
@@ -93,7 +93,7 @@ class _OnprogressProjectPageState extends State<OnprogressProjectPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'History Project',
+          'In progress Project',
           style: TextStyle(color: Colors.white),
         ),
         actions: [

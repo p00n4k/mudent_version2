@@ -91,10 +91,25 @@ class _SHPHSecretGroupState extends State<SHPHSecretGroup> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            ProjectUnit shphsecret = ProjectUnit(
+              project_id: widget.project.project_id,
+              project_name:
+                  widget.project.project_name + widget.project.project_shph,
+              project_time: widget.project.project_time,
+              project_year: widget.project.project_year,
+              project_address: widget.project.project_address,
+              project_province: widget.project.project_province,
+              project_district: widget.project.project_district,
+              project_subdistrict: widget.project.project_subdistrict,
+              project_start_date: widget.project.project_start_date,
+              project_end_date: widget.project.project_end_date,
+              project_shph: widget.project.project_shph,
+            );
+
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ConferencePage(project: widget.project),
+                builder: (context) => ConferencePage(project: shphsecret),
               ),
             );
           },
@@ -125,10 +140,25 @@ class _SHPHSecretGroupState extends State<SHPHSecretGroup> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          ProjectUnit shphsecret = ProjectUnit(
+            project_id: widget.project.project_id,
+            project_name:
+                widget.project.project_name + widget.project.project_shph,
+            project_time: widget.project.project_time,
+            project_year: widget.project.project_year,
+            project_address: widget.project.project_address,
+            project_province: widget.project.project_province,
+            project_district: widget.project.project_district,
+            project_subdistrict: widget.project.project_subdistrict,
+            project_start_date: widget.project.project_start_date,
+            project_end_date: widget.project.project_end_date,
+            project_shph: widget.project.project_shph,
+          );
+
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ConferencePage(project: widget.project),
+              builder: (context) => ConferencePage(project: shphsecret),
             ),
           );
         },

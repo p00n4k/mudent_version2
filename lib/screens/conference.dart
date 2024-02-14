@@ -65,8 +65,8 @@ class _ConferencePageState extends State<ConferencePage> {
   join() async {
     var options = JitsiMeetConferenceOptions(
       serverURL:
-          'https://meet.codewithbisky.com/${widget.project.project_name + widget.project.project_shph}',
-      room: widget.project.project_name + widget.project.project_shph,
+          'https://meet.codewithbisky.com/${widget.project.project_name}',
+      room: widget.project.project_name,
       configOverrides: {
         "startWithAudioMuted": isMicMute,
         "startWithVideoMuted": isCameraOff,
@@ -97,7 +97,7 @@ class _ConferencePageState extends State<ConferencePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.project.project_name + widget.project.project_shph,
+          widget.project.project_name,
           style: const TextStyle(color: Colors.white),
         ),
       ),
