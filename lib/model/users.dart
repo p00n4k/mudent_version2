@@ -4,6 +4,7 @@ class User {
   final String user_email;
   final int user_role_id;
   final String user_shph;
+  final int project_count;
 
   User({
     required this.user_id,
@@ -11,6 +12,7 @@ class User {
     required this.user_email,
     required this.user_role_id,
     required this.user_shph,
+    required this.project_count,
   });
 }
 
@@ -24,6 +26,7 @@ List<User> parseJsonData(dynamic jsonData) {
       user_email: userJson['user_email'],
       user_role_id: userJson['user_role_id'],
       user_shph: userJson['user_shph'],
+      project_count: userJson['project_count'],
     );
     userList.add(user);
   }

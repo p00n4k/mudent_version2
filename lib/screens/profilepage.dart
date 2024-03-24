@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _fetchData() async {
-    final url = Uri.parse('http://10.0.2.2:3000/user');
+    final url = Uri.parse('http://10.0.2.2:3000/userinfo');
     final response = await http.get(
       url,
       headers: {
@@ -170,6 +170,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ? 'STAFF'
                                           : userList[0].user_role_id.toString(),
                         ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Project that user join",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(userList[0].project_count.toString()),
                       ),
                     ),
                   ),
@@ -336,6 +353,23 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: ListTile(
                         leading: Icon(Icons.local_hospital),
                         title: Text(userList[0].user_shph),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Project that user join",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(userList[0].project_count.toString()),
                       ),
                     ),
                   ),

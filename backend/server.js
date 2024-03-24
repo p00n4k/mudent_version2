@@ -116,6 +116,8 @@ app.post("/register", async (req, res) => {
   });
   
 
+  
+
 //Login
 app.post("/login", async (req, res) => {
     const { user_email, user_password } = req.body;
@@ -174,6 +176,30 @@ app.get("/user", authenticateToken, async (req, res) => {
       res.status(500).send();
     }
   });
+
+//Get User Info from token and number of project that user join that complete
+app.get("/userinfo", authenticateToken, async (req, res) => {
+  try {
+    connection.query(
+      `SELECT user_id,user_email,user_fullname,user_role_id,user_shph,(SELECT COUNT(user_project_group_id) FROM user_project WHERE user_project_user_id = user_id) AS project_count FROM users WHERE user_id = '${req.user.user_id}'`,
+      (err, result, fields) => {
+        if (err) {
+          console.log("Error in the query", err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+});
+
+
+
+
+
 
 // Join group
 app.post("/project/:project_id/join", authenticateToken, async (req, res) => {
@@ -553,6 +579,36 @@ app.post("/project/date", authenticateToken, async (req, res) => {
     res.status(500).send();
   }
 });
+
+//list all user for admin and number of project that user join that complete
+app.get("/user/all", authenticateToken, async (req, res) => {
+  try {
+    if (req.user.user_role_id !== 3) {
+      return res.status(403).json({ error: "Unauthorized access" });
+    }
+
+    connection.query(
+      `SELECT user_id,user_email,user_fullname,user_role_id,user_shph,(SELECT COUNT(user_project_group_id) FROM user_project WHERE user_project_user_id = user_id) AS project_count FROM users`,
+      (err, result, fields) => {
+        if (err) {
+          console.log("Error in the query", err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+}
+);
+
+
+
+
+
+
 
 
 

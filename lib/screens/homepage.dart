@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mudent_version2/model/users.dart';
+import 'package:mudent_version2/screens/admin/adminmenupage.dart';
 import 'package:mudent_version2/screens/admin/adminmyunit.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
 import 'package:mudent_version2/screens/menupage.dart';
@@ -38,7 +39,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future<void> _fetchData() async {
-    final url = Uri.parse('http://10.0.2.2:3000/user');
+    final url = Uri.parse('http://10.0.2.2:3000/userinfo');
     final response = await http.get(
       url,
       headers: {
@@ -79,7 +80,7 @@ class _HomepageState extends State<Homepage> {
         ),
         body: TabBarView(
           children: [
-            MenuPage(),
+            userList[0].user_role_id == 3 ? AdminMenuPage() : MenuPage(),
             ProfilePage(),
             userList[0].user_role_id == 3
                 ? AdminAllProjectPage()

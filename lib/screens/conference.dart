@@ -64,8 +64,8 @@ class _ConferencePageState extends State<ConferencePage> {
 //join conference
   join() async {
     var options = JitsiMeetConferenceOptions(
-      serverURL: 'https://meet.codewithbisky.com',
-      room: widget.project.project_name,
+      serverURL: 'https://telecon.ict.mahidol.ac.th',
+      room: widget.project.project_name + widget.project.project_id.toString(),
       configOverrides: {
         "startWithAudioMuted": isMicMute,
         "startWithVideoMuted": isCameraOff,
@@ -148,7 +148,9 @@ class _ConferencePageState extends State<ConferencePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.project.project_name,
+          widget.project.project_name +
+              ' Project ID: ' +
+              widget.project.project_id.toString(),
           style: const TextStyle(color: Colors.white),
         ),
       ),

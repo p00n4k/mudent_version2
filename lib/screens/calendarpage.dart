@@ -16,10 +16,7 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   String token = '';
-  var daylist = [
-    DateTime(2024, 2, 1),
-    DateTime(2024, 2, 2),
-  ];
+
   List<ProjectUnit> projectlist = [];
   var date = DateFormat('yyyy-MM-dd').format(DateTime.now());
   bool check = false;
