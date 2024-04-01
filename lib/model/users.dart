@@ -4,7 +4,7 @@ class User {
   final String user_email;
   final int user_role_id;
   final String user_shph;
-  final int project_count;
+  final int? project_count; // Updated to int?
 
   User({
     required this.user_id,
@@ -12,7 +12,7 @@ class User {
     required this.user_email,
     required this.user_role_id,
     required this.user_shph,
-    required this.project_count,
+    this.project_count, // Updated to int?
   });
 }
 
