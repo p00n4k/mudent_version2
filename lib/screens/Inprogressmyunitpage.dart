@@ -10,6 +10,7 @@ import 'package:mudent_version2/screens/default/defaultmyunitdetailpage.dart';
 import 'package:mudent_version2/screens/shph/shphmyunitpagedetail.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
+import 'package:mudent_version2/widget/dateformatthailand.dart';
 
 class InprogressProjectPage extends StatefulWidget {
   const InprogressProjectPage({Key? key}) : super(key: key);
@@ -141,8 +142,16 @@ class _InprogressProjectPageState extends State<InprogressProjectPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("ที่อยู่ :" + " " + project.project_address),
-                      Text(
-                          'เริ่มวันที่: ${DateFormat('yyyy-MM-dd').format(project.project_start_date)}'),
+                      Row(
+                        children: [
+                          Text('วันที่: '),
+                          DateThai(
+                            startDateThai:
+                                project.project_start_date.toString(),
+                            endDateThai: project.project_end_date.toString(),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   onTap: () {

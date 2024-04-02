@@ -93,8 +93,9 @@ class _AchievementState extends State<Achievement> {
                 title: Text(userList[index].user_fullname),
                 subtitle: Text(userList[index].user_email),
                 leading: Icon(Icons.person),
-                trailing: Text("Project Complete : " +
-                    userList[index].project_count.toString()),
+                trailing: Text("ออกหน่วย: " +
+                    userList[index].project_count.toString() +
+                    " ครั้ง"),
                 tileColor: Colors.white,
                 shape: Border(bottom: BorderSide(color: Colors.grey)),
               ),

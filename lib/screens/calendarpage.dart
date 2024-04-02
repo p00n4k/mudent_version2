@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
+import 'package:mudent_version2/widget/dateformatthailand.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -137,8 +138,17 @@ class _CalendarPageState extends State<CalendarPage> {
                                 Text("ที่อยู่ :" +
                                     " " +
                                     project.project_address),
-                                Text(
-                                    'เริ่มวันที่: ${DateFormat('yyyy-MM-dd').format(project.project_start_date)}'),
+                                Row(
+                                  children: [
+                                    Text('วันที่: '),
+                                    DateThai(
+                                      startDateThai:
+                                          project.project_start_date.toString(),
+                                      endDateThai:
+                                          project.project_end_date.toString(),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                             onTap: () {
