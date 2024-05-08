@@ -14,32 +14,33 @@ class DateThai extends StatelessWidget {
     final startDateThaiTime = DateTime.parse(startDateThai);
     final endDateThaiTime = DateTime.parse(endDateThai);
 
+    //plus 1 day before calculate
+    final startDateThaiTimePlusOneDay =
+        startDateThaiTime.add(Duration(days: 1));
+    final endDateThaiTimePlusOneDay = endDateThaiTime.add(Duration(days: 1));
+
     final thaiDateThaiFormat = DateFormat('dd MMM yyyy', 'th');
 
-    final formattedStartDateThai = thaiDateThaiFormat
-        .format(startDateThaiTime.add(Duration(days: 543 * 365)));
-    final formattedEndDateThai = thaiDateThaiFormat
-        .format(endDateThaiTime.add(Duration(days: 543 * 365)));
-
     // check if start date and end date is not the same month
-    if (startDateThaiTime.month != endDateThaiTime.month ||
-        startDateThaiTime.year != endDateThaiTime.year) {
+    if (startDateThaiTimePlusOneDay.month != endDateThaiTimePlusOneDay.month ||
+        startDateThaiTimePlusOneDay.year != endDateThaiTimePlusOneDay.year) {
       return Text(
-        '$formattedStartDateThai - $formattedEndDateThai',
+        '${startDateThaiTimePlusOneDay.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTimePlusOneDay.month - 1]} ${startDateThaiTimePlusOneDay.year + 543} - ${endDateThaiTimePlusOneDay.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[endDateThaiTimePlusOneDay.month - 1]} ${endDateThaiTimePlusOneDay.year + 543}',
         style: TextStyle(
           fontSize: 16,
         ),
       );
-    } else if (startDateThaiTime.day == endDateThaiTime.day) {
+    } else if (startDateThaiTimePlusOneDay.day ==
+        endDateThaiTimePlusOneDay.day) {
       return Text(
-        '${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year + 543}',
+        '${endDateThaiTimePlusOneDay.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTimePlusOneDay.month - 1]} ${endDateThaiTimePlusOneDay.year + 543}',
         style: TextStyle(
           fontSize: 16,
         ),
       );
     } else {
       return Text(
-        '${startDateThaiTime.day} - ${endDateThaiTime.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year + 543}',
+        '${startDateThaiTimePlusOneDay.day} - ${endDateThaiTimePlusOneDay.day} ${thaiDateThaiFormat.dateSymbols.STANDALONEMONTHS[startDateThaiTime.month - 1]} ${endDateThaiTime.year + 543}',
         style: TextStyle(
           fontSize: 16,
         ),

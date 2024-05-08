@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/screens/conference.dart';
-import 'package:mudent_version2/screens/fakeconference.dart';
 import 'package:mudent_version2/screens/locationpage.dart';
 import 'package:mudent_version2/screens/memberlistpage.dart';
 import 'package:mudent_version2/screens/patientlistpage.dart';

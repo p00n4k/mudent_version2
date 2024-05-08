@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/model/users.dart';
+import 'package:mudent_version2/screens/admin/userhsitory.dart';
 import 'package:mudent_version2/service/token_service.dart';
 
 import 'dart:convert';
@@ -96,6 +97,14 @@ class _AchievementState extends State<Achievement> {
                 trailing: Text("ออกหน่วย: " +
                     userList[index].project_count.toString() +
                     " ครั้ง"),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            UserHistoryPage(user_id: userList[index].user_id)),
+                  )
+                },
                 tileColor: Colors.white,
                 shape: Border(bottom: BorderSide(color: Colors.grey)),
               ),
