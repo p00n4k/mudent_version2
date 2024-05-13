@@ -5,25 +5,21 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
 import 'package:mudent_version2/model/users.dart';
-import 'package:mudent_version2/screens/admin/adminmyunitdetail.dart';
-import 'package:mudent_version2/screens/default/defaultmyunitdetailpage.dart';
-import 'package:mudent_version2/screens/shph/shphmyunitpagedetail.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
 import 'package:mudent_version2/service/token_service.dart';
 import 'package:mudent_version2/widget/dateformatthailand.dart';
 
-class HistoryMyProjectPage extends StatefulWidget {
-  const HistoryMyProjectPage({Key? key}) : super(key: key);
+class SHPHUnitList extends StatefulWidget {
+  const SHPHUnitList({Key? key}) : super(key: key);
 
   @override
-  State<HistoryMyProjectPage> createState() => _HistoryMyProjectPageState();
+  State<SHPHUnitList> createState() => _SHPHUnitListState();
 }
 
-class _HistoryMyProjectPageState extends State<HistoryMyProjectPage> {
-  String token = '';
+class _SHPHUnitListState extends State<SHPHUnitList> {
   List<User> userList = [];
+  String token = '';
   List<ProjectUnit> projectlist = [];
-  bool check = false;
 
   @override
   void initState() {
@@ -33,8 +29,8 @@ class _HistoryMyProjectPageState extends State<HistoryMyProjectPage> {
 
   Future<void> _initializeState() async {
     await _loadToken();
-    await _checkUser();
     await _fetchDataUser();
+    await _fetchData();
   }
 
   Future<void> _loadToken() async {
@@ -42,36 +38,8 @@ class _HistoryMyProjectPageState extends State<HistoryMyProjectPage> {
     token = await storageService.readToken();
   }
 
-  Future<void> _checkUser() async {
-    final url = Uri.parse('http://10.0.2.2:3000/project/join');
-    final response = await http.get(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-    );
-    if (response.statusCode == 200) {
-      debugPrint('Request successful');
-      if (response.body == '') {
-        setState(() {
-          check = true;
-          projectlist = [];
-        });
-      } else {
-        final jsonData = jsonDecode(response.body);
-        projectlist = parseJsonDataProject(jsonData);
-        setState(() {
-          check = true;
-        });
-      }
-    } else {
-      debugPrint('Error: ${response.statusCode}');
-    }
-  }
-
   Future<void> _fetchDataUser() async {
-    final url = Uri.parse('http://10.0.2.2:3000/user');
+    final url = Uri.parse('http://10.0.2.2:3000/userinfo');
     final response = await http.get(
       url,
       headers: {
@@ -89,32 +57,62 @@ class _HistoryMyProjectPageState extends State<HistoryMyProjectPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'History Unit',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.history),
-          ),
-        ],
-      ),
-      body: _buildProjectList(),
+  Future<void> _fetchData() async {
+    final url =
+        Uri.parse('http://10.0.2.2:3000/project/${userList[0].user_shph}');
+    final response = await http.get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
     );
+    if (response.statusCode == 200) {
+      debugPrint('Request successful');
+      final jsonData = jsonDecode(response.body);
+      projectlist = parseJsonDataProject(jsonData);
+      setState(() {});
+    } else {
+      debugPrint('Error: ${response.statusCode}');
+    }
   }
 
-  Widget _buildProjectList() {
-    if (projectlist.isEmpty && check == true) {
-      return Container(
-          color: Colors.purple[50],
-          child: Center(child: Text("ไม่มีโปรเจคที่เข้าร่วม")));
-    } else if (projectlist.isNotEmpty && check == true) {
-      return Container(
+  @override
+  Widget build(BuildContext context) {
+    if (projectlist.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('All Units', style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.segment_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            )
+          ],
+        ),
+        body: const Center(
+          child: Text('ไม้่มีโปรเจคที่กำลังดำเนินการ'),
+        ),
+      );
+    }
+
+    return Scaffold(
+      // Add Scaffold widget as the parent
+      appBar: AppBar(
+          title: Text('All Units', style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.segment_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            )
+          ]),
+      body: Container(
         color: Colors.purple[50],
         child: ListView.builder(
           itemCount: projectlist.length,
@@ -155,48 +153,20 @@ class _HistoryMyProjectPageState extends State<HistoryMyProjectPage> {
                     ],
                   ),
                   onTap: () {
-                    if (userList[0].user_role_id == 3) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              AdminAllProjectPageDetail(project: project),
-                        ),
-                      ).then((value) => setState(() {
-                            _initializeState();
-                          }));
-                    } else if (userList[0].user_shph == project.project_shph) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              SHPHAllProjectPageDetail(project: project),
-                        ),
-                      ).then((value) => setState(() {
-                            _initializeState();
-                          }));
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              DefaultMyProjectDetailPage(project: project),
-                        ),
-                      ).then((value) => setState(() {
-                            _initializeState();
-                          }));
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProjectDetailPage(project: project),
+                      ),
+                    );
                   },
                 ),
               ),
             );
           },
         ),
-      );
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
+      ),
+    );
   }
 }

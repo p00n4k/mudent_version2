@@ -97,7 +97,7 @@ class _ConferencePageState extends State<ConferencePage> {
       appBar: AppBar(
         title: Text(
           widget.project.project_name +
-              ' Project ID: ' +
+              ' Unit ID: ' +
               widget.project.project_id.toString(),
           style: const TextStyle(color: Colors.white),
         ),

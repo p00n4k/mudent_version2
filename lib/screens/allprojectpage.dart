@@ -59,7 +59,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
     if (projectlist.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('All Projects', style: TextStyle(color: Colors.white)),
+          title: Text('All Units', style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -79,7 +79,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
     return Scaffold(
       // Add Scaffold widget as the parent
       appBar: AppBar(
-          title: Text('All Projects', style: TextStyle(color: Colors.white)),
+          title: Text('All Units', style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             IconButton(
               icon: Icon(

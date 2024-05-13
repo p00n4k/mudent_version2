@@ -94,7 +94,7 @@ class _InprogressProjectPageState extends State<InprogressProjectPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'In progress Project',
+          'In progress Unit',
           style: TextStyle(color: Colors.white),
         ),
         actions: [

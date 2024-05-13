@@ -333,13 +333,16 @@ app.post('/project', authenticateToken, async (req, res) => {
 //Get project list
 app.get('/project', authenticateToken, async (req, res) => {
   try {
-    connection.query(`SELECT * FROM project`, (err, result, fields) => {
-      if (err) {
-        console.log('Error in the query', err);
-        return res.status(400).send();
+    connection.query(
+      `SELECT * FROM project WHERE project_status != 1`,
+      (err, result, fields) => {
+        if (err) {
+          console.log('Error in the query', err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
       }
-      res.status(200).json(result);
-    });
+    );
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -350,6 +353,25 @@ app.get('/project/notcomplete', authenticateToken, async (req, res) => {
   try {
     connection.query(
       `SELECT * FROM project WHERE project_status != 1`,
+      (err, result, fields) => {
+        if (err) {
+          console.log('Error in the query', err);
+          return res.status(400).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+});
+
+//Get project list that  complete
+app.get('/project/complete', authenticateToken, async (req, res) => {
+  try {
+    connection.query(
+      `SELECT * FROM project WHERE project_status != 0`,
       (err, result, fields) => {
         if (err) {
           console.log('Error in the query', err);
@@ -568,7 +590,8 @@ app.post('/project/date', authenticateToken, async (req, res) => {
   console.log(start_date);
   try {
     connection.query(
-      `SELECT * FROM project WHERE project_start_date = '${start_date}'`,
+      `SELECT * FROM project WHERE project_start_date = '${start_date}' AND project_status != 1;
+      `,
       (err, result, fields) => {
         if (err) {
           console.log('Error in the query', err);
@@ -622,6 +645,26 @@ app.get('/project/join/:user_id', authenticateToken, async (req, res) => {
         }
         if (result.length === 0) {
           return res.status(200).send();
+        }
+        res.status(200).json(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+});
+
+app.get('/project/:shph', authenticateToken, async (req, res) => {
+  const { shph } = req.params;
+  try {
+    connection.query(
+      'SELECT * FROM project WHERE project_status != 1 AND project_shph = ?',
+      [shph],
+      (err, result, fields) => {
+        if (err) {
+          console.log('Error in the query', err);
+          return res.status(400).send();
         }
         res.status(200).json(result);
       }

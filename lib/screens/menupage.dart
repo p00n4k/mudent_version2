@@ -10,6 +10,7 @@ import 'package:mudent_version2/screens/disablepage.dart';
 import 'package:mudent_version2/screens/historymyunitpage.dart';
 import 'package:mudent_version2/screens/profilepage.dart';
 import 'package:mudent_version2/screens/project_detail.dart';
+import 'package:mudent_version2/screens/shph/shphunitlist.dart';
 import 'package:mudent_version2/service/token_service.dart';
 import 'package:mudent_version2/widget/dateformatthailand.dart';
 import 'package:mudent_version2/widget/menu.dart';
@@ -103,13 +104,13 @@ class _MenuPageState extends State<MenuPage> {
             children: [
               Menu(
                   path: 'assets/images/allpj.png',
-                  title: 'All Project',
+                  title: 'All Unit',
                   callback: () => AllProjectPage()),
               SizedBox(width: 14),
               Menu(
-                  path: 'assets/images/video.png',
-                  title: 'Conference',
-                  callback: () => Disable()),
+                  path: 'assets/images/SHPH.png',
+                  title: 'SHPH Unit',
+                  callback: () => SHPHUnitList()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/calendar.png',
@@ -123,40 +124,19 @@ class _MenuPageState extends State<MenuPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Menu(
-                  path: 'assets/images/jaiya.png',
-                  title: 'จ่ายยาออนไลน์',
-                  callback: () => Disable()),
-              SizedBox(width: 14),
-              Menu(
-                  path: 'assets/images/medicalonl.png',
-                  title: 'Medical Online',
-                  callback: () => Disable()),
-              SizedBox(width: 14),
-              Menu(
                 path: 'assets/images/history.png',
                 title: 'History',
                 callback: () => HistoryMyProjectPage(),
               ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Menu(
-                  path: 'assets/images/dookonkai.png',
-                  title: 'ดูคนไข้',
-                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/profile.png',
                 title: 'My Profile',
                 callback: () => ProfilePage(),
               ),
-              SizedBox(width: 14),
-              SizedBox(width: 100, height: 100),
             ],
           ),
+          SizedBox(height: 20),
           SizedBox(height: 30),
           Row(
             children: [

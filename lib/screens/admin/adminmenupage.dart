@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:intl/intl.dart';
 import 'package:mudent_version2/model/project.dart';
+import 'package:mudent_version2/screens/admin/adminprojectdone.dart';
 import 'package:mudent_version2/screens/adminuserlist.dart';
 import 'package:mudent_version2/screens/allprojectpage.dart';
 import 'package:mudent_version2/screens/calendarpage.dart';
@@ -104,40 +105,20 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
             children: [
               Menu(
                   path: 'assets/images/allpj.png',
-                  title: 'All Project',
+                  title: 'All Unit',
                   callback: () => AllProjectPage()),
-              SizedBox(width: 14),
-              Menu(
-                  path: 'assets/images/video.png',
-                  title: 'Conference',
-                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/calendar.png',
                 title: 'Calendar',
                 callback: () => CalendarPage(),
               ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Menu(
-                  path: 'assets/images/jaiya.png',
-                  title: 'จ่ายยาออนไลน์',
-                  callback: () => Disable()),
-              SizedBox(width: 14),
-              Menu(
-                  path: 'assets/images/medicalonl.png',
-                  title: 'Medical Online',
-                  callback: () => Disable()),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/history.png',
                 title: 'History',
                 callback: () => HistoryMyProjectPage(),
-              ),
+              )
             ],
           ),
           SizedBox(height: 20),
@@ -145,9 +126,10 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Menu(
-                  path: 'assets/images/dookonkai.png',
-                  title: 'ดูคนไข้',
-                  callback: () => Disable()),
+                path: 'assets/images/project_done.png',
+                title: 'Unit Done',
+                callback: () => AdminAllProjectDonePage(),
+              ),
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/profile.png',
@@ -157,12 +139,12 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
               SizedBox(width: 14),
               Menu(
                 path: 'assets/images/ach.jpg',
-                title: 'Achievement',
+                title: 'Summary',
                 callback: () => Achievement(),
               ),
             ],
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 40),
           Row(
             children: [
               SizedBox(width: 14),
@@ -174,7 +156,6 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                       color: Colors.purple)),
             ],
           ),
-          SizedBox(height: 20),
           Container(
             child: ListView.builder(
               shrinkWrap: true,

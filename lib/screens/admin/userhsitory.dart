@@ -77,7 +77,7 @@ class _UserHistoryPageState extends State<UserHistoryPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'History Project',
+          'History Unit',
           style: TextStyle(color: Colors.white),
         ),
         actions: [

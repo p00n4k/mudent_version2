@@ -176,7 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Project that user join",
+                      Text("Unit that user join",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
